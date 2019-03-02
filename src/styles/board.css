@@ -1,0 +1,9 @@
+.boardContainer{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    border-style: solid;
+    border-color: black;
+}

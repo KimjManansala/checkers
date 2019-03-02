@@ -1,0 +1,17 @@
+.red-piece {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+
+  .black-piece{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 50%;
+    margin: auto;
+
+  }
