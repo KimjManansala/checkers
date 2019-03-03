@@ -1,83 +1,83 @@
 const init = {
   a: [
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" }
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" }
   ],
   b: [
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" }
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" }
   ],
   c: [
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "red-piece" },
-    { backgoundColor: "white", pieceColor: "" }
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
+    {backgoundColor: "white"}
   ],
   d: [
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" }
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "" }
   ],
   e: [
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "" },
-    { backgoundColor: "white", pieceColor: "" }
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "" },
+    {backgoundColor: "white"}
   ],
   f: [
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" }
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" }
   ],
   g: [
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" }
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"},
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {backgoundColor: "white"}
   ],
   h: [
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" },
-    { backgoundColor: "white", pieceColor: "" },
-    { backgoundColor: "grey", pieceColor: "black-piece" }
+    {  backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {  backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {  backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
+    {  backgoundColor: "white" },
+    { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" }
   ]
 };
 

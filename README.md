@@ -1,68 +1,168 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Checkers
 
-## Available Scripts
+Checkers is a ReactJS project that will test and refine my skills with React and Redux
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- ## Built With -->
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Authors
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Kim Jasper Manansala** - *Initial work* - [github](https://github.com/KimjManansala)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## License
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Bin-Oranization
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##Live Demo
+---
+<!-- [Space Balls](http://paigeniedringhaus.com/spaceBalls/) -->
+Link will be uploaded shortly
 
-## Learn More
+##Link to Video of Gameplay
+---
+<!-- <a href="https://www.youtube.com/watch?v=_gJCeyrkUkM" target="_blank"><img src="http://img.youtube.com/vi/_gJCeyrkUkM/0.jpg" width="240" height="180" border="10" /></a> -->
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Will be uploaded shortly
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##Contents
+--- 
+ * What It Is
+  * What We Used
+  * Challenges and Solutions
+  * Our Stretch Goals
+  * Authors
+  * Screenshots
+  * Github Link
 
-### Code Splitting
+##What It Is
+---
+This is a React Project to refine my skills using React and Redux. This is a simple checkers game to practice logic.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+##What We Used
+---
+  * HTML5
+  * CSS3
+  * JavaScript
+  * ReactJS
+  * Redux
 
-### Analyzing the Bundle Size
+##Challenges and Solutions
+---
+Simple checkers game
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+  * Challenge #1: Design
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+  More challenges to come as I continue to program
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+##Authors
+---
+  * [KimJ Manansala](https://github.com/KimjManansala)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+##Github Link
+---
+[Github](https://github.com/KimjManansala/checkers)
 
-### `npm run build` fails to minify
+##Screenshots
+---
+Coming soon
+<!-- Home Screen
+![screen shot 2019-02-12 at 3 27 42 pm](https://user-images.githubusercontent.com/40606399/53651563-862ed100-3c0c-11e9-9b6c-c817c4fd6057.png) -->
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+##Code Examples
+---
+Comming soon
+
+<!-- This is the player constructor function we use for creating each new player on the canvas game board. It determines which color to make the player based on their team assignment (which happens when they enter the lobby), and sets up all the other things player objects can do like boosting their speed, sending out a flare to locate the flag, etc.
+
+```javascript
+Player = function (game, team, position, flag, game_id, id) {
+    this.alive = true;
+    this.game = game;
+    if(team === 'Blue'){
+        this.player = game.add.sprite(blue_position[position][0], blue_position[position][1], 'blue_player', 'blue_team');
+        this.team_flag = 'blue_flag';
+    }else{
+        this.player = game.add.sprite(red_position[position][0], red_position[position][1], 'red_player', 'red_team');
+        this.team_flag = 'red_flag';
+    }
+    this.player_id = game_id;
+    this.unique_id = id;
+    this.flare = game.add.weapon(10, 'flare');
+    this.flare.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+    this.flare.bulletLifespan = 1000;
+    this.flare.bulletSpeed = 300;
+    this.flare.fireRate = 300;
+    this.flare.trackSprite(this.player, 0, 0, true);
+    this.boost = 0;
+    this.boostTurn = 0;
+
+    this.player.scale.setTo(0.35, 0.35);
+
+    this.player.anchor.set(0.5, 0.5);
+
+    game.physics.p2.enable(this.player);
+
+};
+```
+This is where we put the Socket.io factory inside the Angular controller so Angular has access to it. Below are a couple of functions initializing the sockets as soon as a player arrives at the home page, and then updating a playerList array once they signed in and entered the lobby before the game starts.
+
+```javascript
+gameApp.controller('mainController', function($scope, $http, $cookies, $route, $location, $rootScope, $timeout, socket){
+  var num_ready = 0;
+  var apiPath = 'http://localhost:3000';
+
+  socket.on('player_init', function(socket_id){
+    console.log("Welcome, fool", socket_id);
+    myId = socket_id;
+  });
+
+  function updateLobbyCount(){
+    for(var i = 0; i < playerList.length; i++){
+      if(playerList[i].socketID == myId){
+        var lobbyPlayer = playerList[i];
+      }
+    }
+    socket.emit('enter_lobby', {
+      id: myId,
+      player: lobbyPlayer
+    });
+    console.log('someone is entering the lobby');
+  }
+```
+
+Socket.io JavaScript that actually starts the game when all the players in the lobby have clicked the 'Game Launch' button. This initializes the game, sets up the randomly moving flag and creates all the players on the board when it's loaded. 
+
+```javascript
+socket.on('init_game', function(data){
+    console.log(data.num_ready, users.length);
+    if(data.num_ready == users.length){
+      console.log("users are ready");
+      io.sockets.emit('game_launch', users);
+        console.log('game launching');
+      flag_x = Math.floor(Math.random() * 1900 + 10);
+      flag_y = Math.floor(Math.random() * 1900 + 10);
+      io.sockets.emit('flag_coord', {
+        flag_x:flag_x,
+        flag_y:flag_y
+      });
+    }else{
+      io.sockets.emit('player_ready', data.num_ready);
+        console.log('no launch yet'); 
+    }
+  })
+  ``` -->
