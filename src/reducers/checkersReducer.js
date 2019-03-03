@@ -1,5 +1,5 @@
 const init = {
-  a: [
+  0: [
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
     {backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
@@ -9,7 +9,7 @@ const init = {
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
     {backgoundColor: "white" }
   ],
-  b: [
+  1: [
     {backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
     {backgoundColor: "white" },
@@ -19,7 +19,7 @@ const init = {
     {backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" }
   ],
-  c: [
+  2: [
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
     {backgoundColor: "white"},
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
@@ -29,7 +29,7 @@ const init = {
     { lightup: false, backgoundColor: "grey", pieceColor: "red-piece" },
     {backgoundColor: "white"}
   ],
-  d: [
+  3: [
     {backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "" },
     {backgoundColor: "white" },
@@ -39,7 +39,7 @@ const init = {
     {backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "" }
   ],
-  e: [
+  4: [
     { lightup: false, backgoundColor: "grey", pieceColor: "" },
     {backgoundColor: "white"},
     { lightup: false, backgoundColor: "grey", pieceColor: "" },
@@ -49,7 +49,7 @@ const init = {
     { lightup: false, backgoundColor: "grey", pieceColor: "" },
     {backgoundColor: "white"}
   ],
-  f: [
+  5: [
     {backgoundColor: "white"},
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
     {backgoundColor: "white"},
@@ -59,7 +59,7 @@ const init = {
     {backgoundColor: "white"},
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" }
   ],
-  g: [
+  6: [
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
     {backgoundColor: "white"},
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
@@ -69,7 +69,7 @@ const init = {
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
     {backgoundColor: "white"}
   ],
-  h: [
+  7: [
     {  backgoundColor: "white" },
     { lightup: false, backgoundColor: "grey", pieceColor: "black-piece" },
     {  backgoundColor: "white" },

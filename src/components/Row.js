@@ -2,12 +2,13 @@ import React from 'react'
 import Square from './Square';
 import '.././styles/row.css'
 
-const Row = ({rowName}) => {
+const Row = ({rowName, rowNum}) => {
+
   return (
     <React.Fragment>
         <div className='row'>
         {rowName.map((square, index)=>(
-            <Square color= {square.backgoundColor} piece= {square.pieceColor} key={index}/>
+            <Square color= {square.backgoundColor} rowNum={rowNum} piece= {square.pieceColor} key={index}/>
         ))}
         </div>
     </React.Fragment>
