@@ -1,32 +1,30 @@
 import "../styles/piece.css";
-// const Piece = ({piece}) => {
-//   return (
-//     <div className={piece}>
-//     </div>
-//   )
-// }
 
-// export default Piece
+import React from 'react'
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-class Piece extends Component {
-  render() {
-    let { piece, rowNum} = this.props;
-    console.log(piece,rowNum)
-    return <div className={piece}>
-        {rowNum}
-    </div>;
-  }
+const Piece = ({color, rowI, column, method}) => {
+  return (
+    <div className={'piece-'+color}
+        onClick={()=>{method(color, rowI, column)}}
+      >
+      {rowI}-{column}
+      </div>
+  )
 }
 
-const mapStateToProps = state => ({
-  board: state.board
-});
+export default Piece
 
-const mapDispatchToProps = dispatch => ({});
+// const mapStateToProps = state => ({
+//   board: state.board
+// });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Piece);
+// const mapDispatchToProps = dispatch => ({
+//   pieceMove: (pieceColor, pieceRow, columnNum) =>
+//     dispatch({ type: "PIECE_MOVE", color: pieceColor, row: pieceRow, column: columnNum })
+// });
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Piece);
+

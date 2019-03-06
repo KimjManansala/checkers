@@ -1,3 +1,9 @@
-.square{
+
+.square-empty{
     flex-grow: 1;
+    background-color: lightgray;
+}
+.square-ready{
+    flex-grow: 1;
+    background-color: grey;
 }

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from './serviceWorker';
 // Redux
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 
 // Root reducer
 import rootReducer from "./reducers/index";
@@ -23,7 +23,8 @@ import App from './components/App'
 const routing = routerMiddleware(history);
 
 // Initialize redux store and thunk middleware
-const store = createStore(rootReducer, applyMiddleware(routing));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(routing)));
 
 
 ReactDOM.render( <Provider store={store}>

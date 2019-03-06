@@ -2,14 +2,24 @@ import React from "react";
 import '.././styles/square.css'
 import Piece from "./Piece";
 
-const Square = ({ color, piece, rowNum}) => {
+const Square = ({ empty, color, rowI, column, method}) => {
+
   return (
-    <div
-      className="square"
-      style={{ backgroundColor: color}}
-    >
-    {piece? <Piece rowNum = {rowNum} piece={piece}/>: null}
-    </div>
+      <React.Fragment>
+        {empty? 
+          <div className='square-empty'>
+            <Piece color={'blank'}/>
+            </div>
+        : 
+        <div className='square-ready'>
+            <Piece method={method}color={color} rowI={rowI} column={column}/>
+
+          </div>}
+
+      </React.Fragment>
+
+
+    
   );
 };
 
