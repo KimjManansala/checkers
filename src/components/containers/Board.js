@@ -12,6 +12,7 @@ class Board extends Component {
     return (
       <React.Fragment>
         <h1>HELLO THIS IS THE TEST FOR THE BOARD</h1>
+        <h2>It is {this.props.player}</h2>
         <div className="boardContainer">
           {this.props.board.map((row, index)=>(
             <Row rowName={row} index={index} method={this.props.pieceMove} key={index}/>
@@ -23,7 +24,8 @@ class Board extends Component {
 }
 
 const mapStateToProps = state => ({
-  board: state.board
+  player: state.board.player,
+  board: state.board.board
 });
 
 const mapDispatchToProps = dispatch => ({

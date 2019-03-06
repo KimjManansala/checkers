@@ -19,7 +19,7 @@ Checkers is a ReactJS project that will test and refine my skills with React and
 
 
 
-# Bin-Oranization
+# Checkers
 ---
 
 ##Live Demo
@@ -59,7 +59,8 @@ This is a React Project to refine my skills using React and Redux. This is a sim
 ---
 Simple checkers game
 
-  * Challenge #1: Design
+  * Challenge #1: Game checks
+    Creating a game is 
 
 
   More challenges to come as I continue to program
