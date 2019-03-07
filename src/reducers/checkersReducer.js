@@ -10,9 +10,7 @@ function initialBoard() {
     [null, "black", null, "black", null, "black", null, "black"]
   ];
 }
-function deepCopy(x) {
-  return JSON.parse(JSON.stringify(x));
-}
+
 
 // INITIAL STATE
 
@@ -24,6 +22,9 @@ const gameState = {
   winnder: null,
   pieceBeforeMove: {row: 0, column: 0}
 };
+function deepCopy(x) {
+  return JSON.parse(JSON.stringify(x));
+}
 
 const checkerReducer = (state = gameState, action) => {
   switch (action.type) {
@@ -77,6 +78,11 @@ function movePiece(row, color, column, newState) {
     }
   }
 }
+// FINSIH MOVE
+function moveToHighlight(row, column, different,newState){
+
+}
+
 
 // CNECKS FOR MOVE PIECE
 function checkHighlight(state) {
@@ -114,14 +120,6 @@ function checkIfEat(newState, row, column, rowMovement, columnMovement, eatPosCo
   }
 }
 
-function checkDidEat(newState, column, row){
-  
-}
-
-// EAT PIECE
-function eatPiece(newState, row, color, column) {
-
-}
 
 function createHighLight(newState, row, column, moveMent, eatPosColor) {
   newState.pieceBeforeMove.row = row
