@@ -60,12 +60,16 @@ This is a React Project to refine my skills using React and Redux. This is a sim
 Simple checkers game
 
   * Challenge #1: Game checks
-    Creating a game is 
+    Creating a game is very complex especially with all the possibilities the user can do. I am creating checks for checkers that are pure functions.
 
 
   More challenges to come as I continue to program
 
 
+
+##Our Stretch Goals
+--
+  *Create
 
 ##Authors
 ---

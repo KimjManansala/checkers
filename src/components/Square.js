@@ -4,11 +4,14 @@ import Piece from "./Piece";
 
 const Square = ({ empty, color, rowI, column, method}) => {
 
+
   return (
       <React.Fragment>
         {empty? 
           <div className='square-empty'>
-            <Piece color={'blank'}/>
+            <Piece color={'blank'}
+              method={null}
+            />
             </div>
         : 
         <div className='square-ready'>

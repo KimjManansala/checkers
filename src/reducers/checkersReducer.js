@@ -1,5 +1,3 @@
-
-
 function initialBoard() {
   return [
     ["red", null, "red", null, "red", null, "red", null],
@@ -12,12 +10,18 @@ function initialBoard() {
     [null, "black", null, "black", null, "black", null, "black"]
   ];
 }
-function deepCopy(x){
-  return JSON.parse(JSON.stringify(x))
+function deepCopy(x) {
+  return JSON.parse(JSON.stringify(x));
 }
+
+// INITIAL STATE
+
 const gameState = {
-  player: "Player 1",
-  board: initialBoard()
+  player: "Black's Turn",
+  board: initialBoard(),
+  redPiece: 12,
+  blackPiece: 12,
+  winnder: null
 };
 
 const checkerReducer = (state = gameState, action) => {
@@ -25,15 +29,13 @@ const checkerReducer = (state = gameState, action) => {
     case "UPDATE":
       break;
     case "PIECE_MOVE":
-      let newState = deepCopy(state)
+      let newState = deepCopy(state);
       return movePiece(action.row, action.color, action.column, newState);
     default:
       return state;
   }
 };
 export default checkerReducer;
-
-
 
 // CNECKS FOR MOVE PIECE
 function checkHighlight(state) {
@@ -44,105 +46,91 @@ function checkHighlight(state) {
   }
   return true;
 }
-function removeHighlight(newState){
-
+function removeHighlight(newState) {
   for (let i = 0; i < newState.board.length; i++) {
     for (let j = 0; j < newState.board[i].length; j++) {
-      if (newState.board[i][j] === "highlight") newState.board[i][j] = 'empty';
+      if (newState.board[i][j] === "highlight") newState.board[i][j] = "empty";
     }
   }
-  return newState
+  return newState;
 }
 
-// CHECK WHICH USER
+// CHECK IF CAN EAT PIECE
+function checkIfEat(newState, row, column, moveMent, eatPosColor) {
+  
+}
 
-function checkUser(user, action){
+// EAT PIECE
+function eatPiece(newState, row, color, column) {
 
 }
 
+function createHighLight(newState, row, column, moveMent, eatPosColor) {
+  if (column === 0) {
+    if (newState.board[row + moveMent][column + 1] === "empty") {
+      newState.board[row + moveMent][column + 1] = "highlight";
+      newState.board[row][column] = "empty";
+    } else {
+      checkIfEat();
+    }
+  }
+  if (column === 7) {
+    if (newState.board[row + moveMent][column - 1] === "empty") {
+      newState.board[row + moveMent][column - 1] = "highlight";
+      newState.board[row][column] = "empty";
+    } else {
+      checkIfEat();
+    }
+  }
+
+  if (column < 7 && column > 0) {
+    if (newState.board[row + moveMent][column - 1] === "empty") {
+      newState.board[row + moveMent][column - 1] = "highlight";
+      newState.board[row][column] = "empty";
+    } else {
+      checkIfEat();
+    }
+    if (newState.board[row + moveMent][column + 1] === "empty") {
+      newState.board[row + moveMent][column + 1] = "highlight";
+      newState.board[row][column] = "empty";
+    } else {
+      checkIfEat();
+    }
+  }
+  return newState;
+}
 
 // ACTION MOVE PIECE
 function movePiece(row, color, column, newState) {
   if (checkHighlight(newState.board)) {
     switch (color) {
       case "black":
-        if (column === 0) {
-          if (newState.board[row - 1][column + 1] === "empty") {
-            newState.board[row - 1][column + 1] = "highlight";
-            newState.board[row][column] = "empty";
-
-            return newState;
-          } else {
-            return newState;
-          }
-        } else if (column === 7) {
-          if (newState.board[row - 1][column - 1] === "empty") {
-            newState.board[row - 1][column - 1] = "highlight";
-            newState.board[row][column] = "empty";
-            return newState;
-          } else {
-            return newState;
-          }
+        if (newState.player === "Black's Turn") {
+          return createHighLight(newState, row, column, -1, 'red');
         } else {
-          if (newState.board[row - 1][column - 1] === "empty") {
-            newState.board[row - 1][column - 1] = "highlight";
-            newState.board[row][column] = "empty";
-          }
-          if (newState.board[row - 1][column + 1] === "empty") {
-            newState.board[row - 1][column + 1] = "highlight";
-            newState.board[row][column] = "empty";
-          }
-
           return newState;
         }
-        case "red":
-        if (column === 0) {
-          if (newState.board[row + 1][column + 1] === "empty") {
-            newState.board[row + 1][column + 1] = "highlight";
-            newState.board[row][column] = "empty";
-
-            return newState;
-          } else {
-            return newState;
-          }
-        } else if (column === 7) {
-          if (newState.board[row + 1][column - 1] === "empty") {
-            newState.board[row + 1][column - 1] = "highlight";
-            newState.board[row][column] = "empty";
-            return newState;
-          } else {
-            return newState;
-          }
+      case "red":
+        if (newState.player === "Red's Turn") {
+          return createHighLight(newState, row, column, 1, 'black');
         } else {
-          if (newState.board[row + 1][column - 1] === "empty") {
-            newState.board[row + 1][column - 1] = "highlight";
-            newState.board[row][column] = "empty";
-          }
-          if (newState.board[row + 1][column + 1] === "empty") {
-            newState.board[row + 1][column + 1] = "highlight";
-            newState.board[row][column] = "empty";
-          }
-
           return newState;
         }
-      
+
       default:
         return newState;
     }
   } else {
     switch (color) {
       case "highlight":
-        if(newState.player === 'Player 1'){
-        newState.board[row][column] = "black";
-        console.log(newState)
-        newState.player ='Player 2';
-        return removeHighlight(newState)
-
-        }else{
+        if (newState.player === "Black's Turn") {
+          newState.board[row][column] = "black";
+          newState.player = "Red's Turn";
+          return removeHighlight(newState);
+        } else {
           newState.board[row][column] = "red";
-        newState.player ='Player 1';
-        return removeHighlight(newState)
-
+          newState.player = "Black's Turn";
+          return removeHighlight(newState);
         }
 
       default:
@@ -150,6 +138,3 @@ function movePiece(row, color, column, newState) {
     }
   }
 }
-
-
-
