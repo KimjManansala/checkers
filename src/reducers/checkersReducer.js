@@ -63,11 +63,12 @@ function movePiece(row, color, column, newState) {
       case "highlight":
       console.log(row, column)
         if (newState.player === "Black's Turn") {
-          
+          eatPiece(row, column, 1, newState, 'red')
           newState.board[row][column] = "black";
           newState.player = "Red's Turn";
           return removeHighlight(newState);
         } else {
+          eatPiece(row, column, -1, newState, 'black')
           newState.board[row][column] = "red";
           newState.player = "Black's Turn";
           return removeHighlight(newState);
@@ -81,6 +82,27 @@ function movePiece(row, color, column, newState) {
 // FINSIH MOVE
 function moveToHighlight(row, column, different,newState){
 
+}
+
+// EAT PIECE
+function eatPiece(row, column, direction,newState, color){
+  console.log('hi', color)
+
+  if(newState.pieceBeforeMove.column > column){
+    console.log('will eat piece to empty')
+    console.log(row, column)
+    console.log(row + direction,column +1 )
+    if(newState.board[row + direction][column+1] === color)
+    newState.board[row+ direction][column+1] = 'empty'
+  }else if(newState.pieceBeforeMove.column < column){
+    console.log('will eat piece to empty')
+    console.log(row, column)
+    console.log(row+ direction,column -1 )
+    if(newState.board[row+ direction][column-1] === color)
+    newState.board[row+ direction][column-1] = 'empty'
+  }else{
+    //DO NOTHING
+  }
 }
 
 
@@ -105,8 +127,6 @@ function removeHighlight(newState) {
 // CHECK IF CAN EAT PIECE
 function checkIfEat(newState, row, column, rowMovement, columnMovement, eatPosColor) {
   // PASS THE PIECE THAT WILL BE CHECK IF YOU CAN EAT IT
-  console.log('This is the current', row, column)
-  console.log('Will this be the orignal piece', row-rowMovement, column-columnMovement)
   if(row >  0 && row <7){
 
   if(newState.board[row][column] === eatPosColor){
