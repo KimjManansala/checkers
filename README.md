@@ -117,7 +117,7 @@ const gameState = {
   board: initialBoard(),
   redPiece: 12,
   blackPiece: 12,
-  winnder: null,
+  winner: null,
   pieceBeforeMove: {row: 0, column: 0}
 };
 
