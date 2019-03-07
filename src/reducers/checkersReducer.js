@@ -56,8 +56,21 @@ function removeHighlight(newState) {
 }
 
 // CHECK IF CAN EAT PIECE
-function checkIfEat(newState, row, column, moveMent, eatPosColor) {
-  
+function checkIfEat(newState, row, column, rowMovement, columnMovement, eatPosColor) {
+  // PASS THE PIECE THAT WILL BE CHECK IF YOU CAN EAT IT
+  console.log('This is the current', row, column)
+  console.log('Will this be the orignal piece', row-rowMovement, column-columnMovement)
+  if(row >  0 && row <7){
+
+  if(newState.board[row][column] === eatPosColor){
+    if(newState.board[row + rowMovement][column + columnMovement] === 'empty'){
+      newState.board[row + rowMovement][column + columnMovement] = 'highlight'
+      newState.board[row-rowMovement][column-columnMovement] = "empty";
+    }
+  }else{
+    console.log('NOPE')
+  }
+  }
 }
 
 // EAT PIECE
@@ -71,7 +84,7 @@ function createHighLight(newState, row, column, moveMent, eatPosColor) {
       newState.board[row + moveMent][column + 1] = "highlight";
       newState.board[row][column] = "empty";
     } else {
-      checkIfEat();
+      checkIfEat(newState, row + moveMent, column + 1, moveMent, 1, eatPosColor);
     }
   }
   if (column === 7) {
@@ -79,7 +92,7 @@ function createHighLight(newState, row, column, moveMent, eatPosColor) {
       newState.board[row + moveMent][column - 1] = "highlight";
       newState.board[row][column] = "empty";
     } else {
-      checkIfEat();
+      checkIfEat(newState, row + moveMent, column -1, moveMent, -1,eatPosColor);
     }
   }
 
@@ -88,13 +101,13 @@ function createHighLight(newState, row, column, moveMent, eatPosColor) {
       newState.board[row + moveMent][column - 1] = "highlight";
       newState.board[row][column] = "empty";
     } else {
-      checkIfEat();
+      checkIfEat(newState, row + moveMent, column-1, moveMent, -1, eatPosColor);
     }
     if (newState.board[row + moveMent][column + 1] === "empty") {
       newState.board[row + moveMent][column + 1] = "highlight";
       newState.board[row][column] = "empty";
     } else {
-      checkIfEat();
+      checkIfEat(newState, row + moveMent, column+1, moveMent, 1, eatPosColor);
     }
   }
   return newState;
