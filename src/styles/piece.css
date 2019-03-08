@@ -45,3 +45,13 @@
     margin: auto;
     color:black;
   }
+
+
+  .piece-almostMove{
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgb(107, 170, 151);
+    border-radius: 50%;
+    margin: auto;
+    color:rgb(255, 255, 255);
+  }
