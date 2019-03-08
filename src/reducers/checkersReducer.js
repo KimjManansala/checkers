@@ -19,7 +19,8 @@ const gameState = {
   red: 12,
   black: 12,
   winner: null,
-  pieceBeforeMove: { row: 0, column: 0 }
+  pieceBeforeMove: { row: 0, column: 0 },
+  canContinue: false
 };
 function deepCopy(x) {
   return JSON.parse(JSON.stringify(x));
@@ -62,49 +63,30 @@ function movePiece(row, color, column, newState) {
     switch (color) {
       case "highlight":
         if (newState.currentTurn === "BLACK") {
-          if (capturePiece(row, column, 1, newState, "red")) {
-            capturePiece(row, column, 1, newState, "red");
-            if (checkDouble(newState, row, column, color, "red")) {
-              newState.pieceBeforeMove.row = row;
-  newState.pieceBeforeMove.column = column;
-              moveToHighlight(row, column, newState, "black", "RED")
-
-              checkDouble(newState, row, column, color, "red")
-              console.log("will checkDouble");
-            } else {
-              moveToHighlight(row, column, newState, "black", "RED");
-              newState.currentTurn = "RED";
-              return removeHighlight(newState);
-            }
+          capturePiece(row, column, 1, newState, "red");
+          if (newState.canContinue) {
+            moveToHighlight(row, column, newState, "black", "RED");
+            newState.canContinue = false;
+            return newState;
           } else {
-            capturePiece(row, column, 1, newState, "red");
             moveToHighlight(row, column, newState, "black", "RED");
             newState.currentTurn = "RED";
             return removeHighlight(newState);
           }
         } else {
-          if (capturePiece(row, column, 1, newState, "red")) {
-            capturePiece(row, column, -1, newState, "black");
-            if (checkDouble(newState, row, column, color, "black")) {
-              newState.pieceBeforeMove.row = row;
-  newState.pieceBeforeMove.column = column;
-              moveToHighlight(row, column, newState, "red", "BLACK");
-              checkDouble(newState, row, column, color, "black")
-              console.log("will checkDouble");
-            } else {
-              capturePiece(row, column, -1, newState, "black");
-              moveToHighlight(row, column, newState, "red", "BLACK");
-              newState.currentTurn = "BLACK";
-              return removeHighlight(newState);
-            }
+          // checkDouble(newState, row, column, "black");
+          capturePiece(row, column, -1, newState, "black");
+          if (newState.canContinue) {
+            moveToHighlight(row, column, newState, "red", "BLACK");
+            newState.canContinue = false;
+            return newState;
           } else {
-            capturePiece(row, column, -1, newState, "black");
             moveToHighlight(row, column, newState, "red", "BLACK");
             newState.currentTurn = "BLACK";
             return removeHighlight(newState);
           }
         }
-        // break;
+      // break;
       default:
         return newState;
     }
@@ -112,51 +94,80 @@ function movePiece(row, color, column, newState) {
 }
 // FUNCTION CHECK IF DOUBLE
 
-function checkDouble(newState, row, column, color, eatPosColor) {
+function checkDouble(newState, row, column, eatPosColor) {
+  let first,
+    second,
+    third,
+    fourth = false;
   if (newState.board[row + 1][column + 1] === eatPosColor) {
+    // first = true;
     console.log("CAN DOUBLE", row + 1, column + 1);
-    return checkIfCapture(newState, row + 1, column + 1, 1, 1, eatPosColor);
+
+    first = checkIfCapture(newState, row + 1, column + 1, 1, 1, eatPosColor);
   }
   if (newState.board[row + 1][column - 1] === eatPosColor) {
     console.log("CAN DOUBLE", row + 1, column - 1);
-    return checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
+    // second = true;
+
+    second = checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
   }
   if (newState.board[row - 1][column + 1] === eatPosColor) {
     console.log("CAN DOUBLE", row - 1, column + 1);
-    return checkIfCapture(newState, row - 1, column + 1, -1, 1, eatPosColor);
+    // third = true;
+
+    third = checkIfCapture(newState, row - 1, column + 1, -1, 1, eatPosColor);
   }
   if (newState.board[row - 1][column - 1] === eatPosColor) {
+    // true;
+
     console.log("CAN DOUBLE", row - 1, column - 1);
-    return checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
+    fourth = checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
+  }
+  if (first || second || third || fourth) {
+    newState.board[newState.pieceBeforeMove.row][newState.pieceBeforeMove.column] = 'empty'
+    newState.pieceBeforeMove.row = row;
+    newState.pieceBeforeMove.column = column;
+    newState.canContinue = true;
   }
 }
 
 // FINSIH MOVE
 function moveToHighlight(row, column, newState, color, currentTurn) {
+
   newState.board[row][column] = color;
-  newState.board[newState.pieceBeforeMove.row][
-    newState.pieceBeforeMove.column
-  ] = "empty";
+  newState.board[newState.pieceBeforeMove.row][newState.pieceBeforeMove.column] = "empty";
 }
 
 // CAPTURE PIECE
 function capturePiece(row, column, direction, newState, color) {
-  console.log('capturepiece is running')
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
+  console.log('This is old column',newState.pieceBeforeMove.column)
+  console.log('New column',column)
+  console.log(direction, 'tHIS')
+
   if (newState.pieceBeforeMove.column > column) {
+    console.log(row + direction, column + 1)
+    console.log(newState.board[row + direction][column + 1], color)
     if (newState.board[row + direction][column + 1] === color) {
-      console.log(row + direction, column + 1)
       newState.board[row + direction][column + 1] = "empty";
       newState[color] -= 1;
+
+      checkDouble(newState, row, column, color);
+
       return true;
     }
   } else if (newState.pieceBeforeMove.column < column) {
+    console.log(row + direction, column - 1)
+    console.log(newState.board[row + direction][column - 1], color)
     if (newState.board[row + direction][column - 1] === color) {
-      console.log(row + direction, column - 1)
       newState[color] -= 1;
       newState.board[row + direction][column - 1] = "empty";
+      checkDouble(newState, row, column, color);
       return true;
     }
   } else {
+    console.log('Hello')
     return false;
     //DO NOTHING
   }
@@ -190,17 +201,14 @@ function checkIfCapture(
   eatPosColor
 ) {
   // PASS THE PIECE THAT WILL BE CHECK IF YOU CAN EAT IT
-  console.log(row, column, rowMovement, columnMovement, eatPosColor);
+
   if (row > 0 && row < 7) {
     if (newState.board[row][column] === eatPosColor) {
       if (
         newState.board[row + rowMovement][column + columnMovement] === "empty"
       ) {
-        console.log(true, row + rowMovement, column + columnMovement);
-
         newState.board[row + rowMovement][column + columnMovement] =
           "highlight";
-          console.log(newState.currentTurn.toLowerCase())
         // newState.board[row - rowMovement][column - columnMovement] = newState.currentTurn.toLowerCase();
         return true;
       }
@@ -211,7 +219,7 @@ function checkIfCapture(
 }
 
 function createHighLight(newState, row, column, moveMent, eatPosColor) {
-  console.log("This is what was clicked", row, column, moveMent, eatPosColor);
+
   newState.pieceBeforeMove.row = row;
   newState.pieceBeforeMove.column = column;
   if (column === 0) {
@@ -248,8 +256,6 @@ function createHighLight(newState, row, column, moveMent, eatPosColor) {
   if (column < 7 && column > 0) {
     if (newState.board[row + moveMent][column - 1] === "empty") {
       newState.board[row + moveMent][column - 1] = "highlight";
-      console.log("Hi");
-
       // newState.board[row][column] = "empty";
     } else {
       checkIfCapture(
@@ -262,8 +268,6 @@ function createHighLight(newState, row, column, moveMent, eatPosColor) {
       );
     }
     if (newState.board[row + moveMent][column + 1] === "empty") {
-      console.log("Hi");
-
       newState.board[row + moveMent][column + 1] = "highlight";
       // newState.board[row][column] = "empty";
     } else {
