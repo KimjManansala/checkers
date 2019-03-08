@@ -26,4 +26,5 @@ const Square = ({ empty, color, rowI, column, method}) => {
   );
 };
 
+
 export default Square;
