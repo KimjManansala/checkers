@@ -60,7 +60,8 @@
   .piece-blackking{
     min-width: 100%;
     min-height: 100%;
-    background-color: rgb(190, 119, 119);
+    background-color: rgb(33, 4, 138);
+    /* background-image: url('https://cdn.shopify.com/s/files/1/0743/4995/products/King_Wearing_Crown_Icon_-_Watermark.jpg?v=1481490121'); */
     border-radius: 50%;
     margin: auto;
     color:white;
@@ -69,7 +70,7 @@
   .piece-redking{
     min-width: 100%;
     min-height: 100%;
-    background-color: rgb(50, 231, 255);
+    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     margin: auto;
     color:white;
