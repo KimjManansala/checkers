@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 // Redux
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -9,34 +9,44 @@ import { createStore, applyMiddleware, compose } from "redux";
 // Root reducer
 import rootReducer from "./reducers/index";
 
-
 // React Router
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./history"; // Import history in any component you want to use it
 import { routerMiddleware } from "react-router-redux";
 
 // Components
-import App from './components/App'
-
+import App from "./components/App";
+import Navbar from "./components/containers/NavbarContainer";
 
 // Router middleware
 const routing = routerMiddleware(history);
 
 // Initialize redux store and thunk middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(routing)));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(routing))
+);
 
-
-ReactDOM.render( <Provider store={store}>
-<Router history={history}>
-
-<Switch>
-<Route path="/" exact component={App} />
-
-</Switch>
-</Router>
-
-</Provider>, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <div>
+        <Navbar
+          title={"Welcome to my Checkers game!"}
+          tabs={[
+            { text: "Checkers", route: "/" },
+            { text: "Abou", route: "/profile" }
+          ]}
+        />
+        <Switch>
+          <Route path="/" exact component={App} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

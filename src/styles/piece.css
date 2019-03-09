@@ -55,3 +55,23 @@
     margin: auto;
     color:rgb(255, 255, 255);
   }
+
+
+  .piece-blackking{
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgb(190, 119, 119);
+    border-radius: 50%;
+    margin: auto;
+    color:white;
+
+  }
+  .piece-redking{
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgb(50, 231, 255);
+    border-radius: 50%;
+    margin: auto;
+    color:white;
+
+  }
