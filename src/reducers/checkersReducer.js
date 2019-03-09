@@ -299,9 +299,18 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
   newState.pieceBeforeMove.row = row;
   newState.pieceBeforeMove.column = column;
   newState.pieceBeforeMove.oldColor = currentColor;
-  console.log("___________________");
-  console.log(row, column);
-  console.log("___________________");
+ 
+  let canCaptureOther = null
+  switch (eatPosColor){
+    case 'red':
+    canCaptureOther = 'redking'
+    break;
+    case'black':
+    canCaptureOther = 'blackking'
+    break;
+    default:
+    break;
+  }
   if (column === 0) {
     if (newState.board[row + 1]) {
       if (newState.board[row + 1][column + 1] === "empty") {
@@ -309,6 +318,7 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         // newState.board[row][column] = "empty";
       } else {
         checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
+        checkIfCapture(newState, row + 1, column - 1, 1, -1, canCaptureOther);
       }
     }
     if (newState.board[row - 1]) {
@@ -316,6 +326,7 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         newState.board[row - 1][column + 1] = "highlight";
       } else {
         checkIfCapture(newState, row - 1, column + 1, -1, 1, eatPosColor);
+        checkIfCapture(newState, row - 1, column + 1, -1, 1, canCaptureOther);
       }
     }
   }
@@ -325,6 +336,7 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         newState.board[row + 1][column - 1] = "highlight";
       } else {
         checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
+        checkIfCapture(newState, row + 1, column - 1, 1, -1, canCaptureOther);
       }
     }
     if (newState.board[row - 1]) {
@@ -332,6 +344,7 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         newState.board[row - 1][column - 1] = "highlight";
       } else {
         checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
+        checkIfCapture(newState, row - 1, column - 1, -1, -1, canCaptureOther);
       }
     }
   }
@@ -342,11 +355,13 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         newState.board[row + 1][column - 1] = "highlight";
       }else{
         checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
+        checkIfCapture(newState, row + 1, column - 1, 1, -1, canCaptureOther);
       }
       if (newState.board[row + 1][column + 1] === "empty") {
         newState.board[row + 1][column + 1] = "highlight";
       }else{
         checkIfCapture(newState, row + 1, column + 1, 1, 1, eatPosColor);
+        checkIfCapture(newState, row + 1, column + 1, 1, 1, canCaptureOther);
       }
     }
     if (newState.board[row - 1]) {
@@ -354,17 +369,14 @@ function kingHighlight(newState, row, column, eatPosColor, currentColor) {
         newState.board[row - 1][column - 1] = "highlight";
       }else{
         checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
+        checkIfCapture(newState, row - 1, column - 1, -1, -1, canCaptureOther);
       }
       if (newState.board[row - 1][column + 1] === "empty") {
         newState.board[row - 1][column + 1] = "highlight";
         checkIfCapture(newState, row - 1, column + 1, -1, 1, eatPosColor);
+        checkIfCapture(newState, row - 1, column + 1, -1, 1, canCaptureOther);
       }
     }
-
-    // checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
-    // checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
-    // checkIfCapture(newState, row + 1, column - 1, 1, 1, eatPosColor);
-    // checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
   }
   return newState;
 }
@@ -376,9 +388,29 @@ function createHighLight(
   eatPosColor,
   currentColor
 ) {
+
   newState.pieceBeforeMove.row = row;
   newState.pieceBeforeMove.column = column;
   newState.pieceBeforeMove.oldColor = currentColor;
+  let canCaptureOther = null
+  console.log(eatPosColor)
+
+  switch (eatPosColor){
+    case 'red':
+    canCaptureOther = 'redking'
+    break;
+    case'black':
+    canCaptureOther = 'blackking'
+    break;
+    default:
+    break;
+  }
+
+  console.log(canCaptureOther)
+  console.log(eatPosColor)
+
+
+
   if (column === 0) {
     if (newState.board[row + moveMent][column + 1] === "empty") {
       newState.board[row + moveMent][column + 1] = "highlight";
@@ -392,6 +424,14 @@ function createHighLight(
         1,
         eatPosColor
       );
+      checkIfCapture(
+        newState,
+        row + moveMent,
+        column + 1,
+        moveMent,
+        1,
+        canCaptureOther
+      )
     }
   }
   if (column === 7) {
@@ -406,6 +446,14 @@ function createHighLight(
         moveMent,
         -1,
         eatPosColor
+      );
+      checkIfCapture(
+        newState,
+        row + moveMent,
+        column - 1,
+        moveMent,
+        -1,
+        canCaptureOther
       );
     }
   }
@@ -423,6 +471,14 @@ function createHighLight(
         -1,
         eatPosColor
       );
+      checkIfCapture(
+        newState,
+        row + moveMent,
+        column - 1,
+        moveMent,
+        -1,
+        canCaptureOther
+      );
     }
     if (newState.board[row + moveMent][column + 1] === "empty") {
       newState.board[row + moveMent][column + 1] = "highlight";
@@ -435,6 +491,14 @@ function createHighLight(
         moveMent,
         1,
         eatPosColor
+      );
+      checkIfCapture(
+        newState,
+        row + moveMent,
+        column + 1,
+        moveMent,
+        1,
+        canCaptureOther
       );
     }
   }
