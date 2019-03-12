@@ -34,7 +34,8 @@ const checkerReducer = (state = gameState, action) => {
     case "UPDATE":
       break;
     case "PIECE_MOVE":
-      return movePiece(action.row, action.color, action.column, newState);
+    return startPieceMove(newState, action.row ,action.column, action.color)
+      // return movePiece(action.row, action.color, action.column, newState);
     default:
       return state;
   }
@@ -113,7 +114,6 @@ function pieceCheckDouble(newState, row, column, moveMent, eatPosColor) {
 
   if (row > 0 && row < 7) {
     if (newState.board[row - moveMent][column - 1] === eatPosColor) {
-      console.log("first");
       first = checkIfCapture(
         newState,
         row - moveMent,
@@ -124,7 +124,6 @@ function pieceCheckDouble(newState, row, column, moveMent, eatPosColor) {
       );
     }
     if (newState.board[row - moveMent][column + 1] === eatPosColor) {
-      console.log("second");
       second = checkIfCapture(
         newState,
         row - moveMent,
@@ -136,7 +135,6 @@ function pieceCheckDouble(newState, row, column, moveMent, eatPosColor) {
     }
 
     if (first || second) {
-      console.log("true");
       newState.board[newState.pieceBeforeMove.row][
         newState.pieceBeforeMove.column
       ] = "empty";
@@ -144,7 +142,6 @@ function pieceCheckDouble(newState, row, column, moveMent, eatPosColor) {
       newState.pieceBeforeMove.column = column;
       newState.canContinue = true;
     } else {
-      console.log("false");
       newState.canContinue = false;
     }
   }
@@ -157,62 +154,25 @@ function pieceCheckDouble(newState, row, column, moveMent, eatPosColor) {
 }
 // FUNCTION CHECK IF DOUBLE
 
-function checkDouble(newState, row, column, eatPosColor) {
-  let first,
-    second,
-    third,
-    fourth = false;
-  if (newState.board[row + 1][column + 1] === eatPosColor) {
-    // first = true;
-    console.log("CAN DOUBLE", row + 1, column + 1);
-
-    first = checkIfCapture(newState, row + 1, column + 1, 1, 1, eatPosColor);
-  }
-  if (newState.board[row + 1][column - 1] === eatPosColor) {
-    console.log("CAN DOUBLE", row + 1, column - 1);
-    // second = true;
-
-    second = checkIfCapture(newState, row + 1, column - 1, 1, -1, eatPosColor);
-  }
-  if (newState.board[row - 1][column + 1] === eatPosColor) {
-    console.log("CAN DOUBLE", row - 1, column + 1);
-    // third = true;
-
-    third = checkIfCapture(newState, row - 1, column + 1, -1, 1, eatPosColor);
-  }
-  if (newState.board[row - 1][column - 1] === eatPosColor) {
-    // true;
-
-    console.log("CAN DOUBLE", row - 1, column - 1);
-    fourth = checkIfCapture(newState, row - 1, column - 1, -1, -1, eatPosColor);
-  }
-  if (first || second || third || fourth) {
-    newState.board[newState.pieceBeforeMove.row][
-      newState.pieceBeforeMove.column
-    ] = "empty";
-    newState.pieceBeforeMove.row = row;
-    newState.pieceBeforeMove.column = column;
-    newState.canContinue = true;
-  }
-}
 
 // FINSIH MOVE
-function moveToHighlight(row, column, newState, color, currentTurn) {
-  if (row === 0 && color === "black") {
-    newState.board[row][column] = color + "king";
-  } else if (row === 7 && color === "red") {
-    newState.board[row][column] = color + "king";
-  } else {
-    newState.board[row][column] = newState.pieceBeforeMove.oldColor;
-  }
-  newState.board[newState.pieceBeforeMove.row][
-    newState.pieceBeforeMove.column
-  ] = "empty";
-}
+// function moveToHighlight(row, column, newState, color, currentTurn) {
+//   if (row === 0 && color === "black") {
+//     newState.board[row][column] = color + "king";
+//   } else if (row === 7 && color === "red") {
+//     newState.board[row][column] = color + "king";
+//   } else {
+//     newState.board[row][column] = newState.pieceBeforeMove.oldColor;
+//   }
+//   newState.board[newState.pieceBeforeMove.row][
+//     newState.pieceBeforeMove.column
+//   ] = "empty";
+// }
 
 // CAPTURE PIECE
 function capturePiece(row, column, direction, newState, color) {
   console.log("Being passed into capture Piece", row, column);
+
   if (newState.pieceBeforeMove.column > column) {
     if (newState.board[row + direction][column + 1] === color) {
       newState.board[row + direction][column + 1] = "empty";
@@ -233,22 +193,13 @@ function capturePiece(row, column, direction, newState, color) {
       return true;
     }
   } else {
-    console.log("Hello");
     return false;
     //DO NOTHING
   }
 }
-function createMultipleCapture(row, column, direction, newState, color) {}
 
-// CNECKS FOR MOVE PIECE
-function checkHighlight(state) {
-  for (let i = 0; i < state.length; i++) {
-    for (let j = 0; j < state[i].length; j++) {
-      if (state[i][j] === "highlight") return false;
-    }
-  }
-  return true;
-}
+
+
 function removeHighlight(newState) {
   for (let i = 0; i < newState.board.length; i++) {
     for (let j = 0; j < newState.board[i].length; j++) {
@@ -279,7 +230,7 @@ function checkIfCapture(
 
   if (row > 0 && row < 7) {
     if (newState.board[row][column] === eatPosColor) {
-      console.log(row, rowMovement, column, columnMovement);
+
       if (
         newState.board[row + rowMovement][column + columnMovement] === "empty"
       ) {
@@ -393,7 +344,7 @@ function createHighLight(
   newState.pieceBeforeMove.column = column;
   newState.pieceBeforeMove.oldColor = currentColor;
   let canCaptureOther = null
-  console.log(eatPosColor)
+
 
   switch (eatPosColor){
     case 'red':
@@ -406,8 +357,7 @@ function createHighLight(
     break;
   }
 
-  console.log(canCaptureOther)
-  console.log(eatPosColor)
+ 
 
 
 
@@ -518,3 +468,185 @@ function checkWinner(newState) {
     // DO NOTHING
   }
 }
+
+
+// CNECKS FOR MOVE PIECE
+function checkHighlight(state) {
+  for (let i = 0; i < state.length; i++) {
+    for (let j = 0; j < state[i].length; j++) {
+      if (state[i][j] === "highlight") return false;
+    }
+  }
+  return true;
+}
+
+
+
+
+function startPieceMove(newState, row ,column, color){
+if(checkHighlight(newState.board)){
+  switch(color){
+    case 'red':
+    console.log('red')
+    if(newState.currentTurn === 'RED')
+    return NEWcreateHighLight(newState, row, column, color, false)
+    else
+    return newState
+    case 'black': 
+    if(newState.currentTurn === 'BLACK')
+    return NEWcreateHighLight(newState, row, column, color, false)
+    else
+    return newState
+    case 'redking':
+    if(newState.currentTurn === 'RED')
+    return NEWcreateHighLight(newState, row, column, color, true)
+    else
+    return newState
+    case 'blackking':
+    if(newState.currentTurn === 'BLACK')
+    return NEWcreateHighLight(newState, row, column, color, true)
+    else
+    return newState
+    default:
+    return newState
+  }
+}else{
+  switch(color){
+    case 'highlight':
+    if(newState.currentTurn === 'BLACK'){
+  return moveToHighlight(newState, row, column, 'black')
+    }else{
+     return moveToHighlight(newState, row, column, 'red')
+    }
+    console.log("highlight")
+    default:
+    return newState
+  }
+}
+}
+
+// UPDATE FUNCTIONS
+function NEWcreateHighLight(newState, row, column, color, kingBo){
+// The parameters being passed into this function should be the newState, ther row of piece, column, of piece, color of piece, and if king
+newState.pieceBeforeMove.row = row;
+newState.pieceBeforeMove.column = column;
+newState.pieceBeforeMove.oldColor = color;
+let canCapture1;
+let canCapture2;
+console.log('hi this is newCreateHighLight')
+switch(color){
+  case 'red':
+  canCapture1 = 'black'
+  canCapture2 = 'blackking'
+  break;
+  case 'redking':
+  canCapture1 = 'black'
+  canCapture2 = 'blackking'
+  break;
+  case 'black':
+  canCapture1 = 'red'
+  canCapture2 = 'redking'
+  break;
+  case 'blackking':
+  canCapture1 = 'red'
+  canCapture2 = 'redking'
+  break;
+  default:
+  break;
+}
+console.log(canCapture1, canCapture2)
+
+if(kingBo){
+  // MOVEMENT FOR KINGS
+}else{
+  console.log('Can do pieceCheckHighlight')
+// MOVEMENT FOR PAWNS
+let piece = pieceCheckHighlight(newState, color, canCapture1, canCapture2)
+console.log('Should return piece', piece)
+return piece
+}
+}
+
+function pieceCheckHighlight(newState, color, capColor1, capColor2){
+let moveColor = (color === 'black' || color ==='blackking')
+let moveMent = 0
+moveColor? moveMent = -1: moveMent= 1;
+// CHECKS IF NEW ROW EXIST
+
+console.log(moveMent, newState.pieceBeforeMove.row + moveMent )
+console.log(newState.board[newState.pieceBeforeMove.row + moveMent])
+if(newState.board[newState.pieceBeforeMove.row + moveMent]){
+  
+  let pieceOnLeft = newState.board[newState.pieceBeforeMove.row + moveMent][newState.pieceBeforeMove.column+1]
+  let pieceOnRight = newState.board[newState.pieceBeforeMove.row + moveMent][newState.pieceBeforeMove.column-1]
+  // CHECKS PIECES ON LEFT EXIST
+  console.log('pIECE ON LEFT', newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column+1, pieceOnLeft)
+  console.log('piece on right', newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column-1, pieceOnRight)
+  if(pieceOnLeft){
+    // CHECKS IF EMPTY
+    if(pieceOnLeft === 'empty'){
+      console.log('piece on left is empty')
+      pieceHighLight(newState, newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column+1 )
+    }else{
+      console.log("entering the left else")
+    // CHECKS IF PIECE CAN BE CAPTURED
+      pieceCaptureHighlight(newState, newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column+1 , moveMent, 1, capColor1, capColor2)
+
+    }
+  }else{
+    // DO NOTHING
+  }
+  // THEN AFTER CHECKING THE LEFT IT CHECKS THE RIGHT
+  // CHECKS PIECE ON RIGHT EXIST
+  if(pieceOnRight){
+
+    // CHECKS IF EMPTY
+
+    if(pieceOnRight === 'empty'){
+      console.log('HI piece on right is empty')
+      pieceHighLight(newState, newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column-1);
+    }else{
+      console.log('entering the right else')
+      // CHECKS IF PIECE CAN BE CAPTURED
+      pieceCaptureHighlight(newState, newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column-1 , moveMent, -1, capColor1, capColor2)
+    }
+  }
+}else{
+console.log('It failed')
+  // DO NOTHING
+}
+console.log("This should be new state", newState)
+return newState
+}
+function pieceHighLight(newState, row, column){
+  newState.board[row][column] = 'highlight'
+}
+
+function pieceCaptureHighlight(newState, row, column, rowDir, colDir, capColor1, capColor2){
+  // ROW AND COLUMN ARE THE COOR FOR PIECE TO BE CAPTURED
+  // COLRIR AND ROW DIR TO DETERMINE WHERE PIECE CAN GO IF CAPTURE
+  console.log('row', row, 'column', column, 'rowDir', rowDir, 'colDir', colDir)
+  if(newState.board[row][column] === capColor1 || newState.board[row][column] === capColor2){
+    if(newState.board[row+rowDir][column+colDir] === 'empty'){
+      newState.board[row+rowDir][column+colDir] = 'highlight'
+    }
+  }
+}
+
+function moveToHighlight(newState, row, column, color){
+  newState.board[newState.pieceBeforeMove.row][newState.pieceBeforeMove.column] = 'empty'
+  
+  if(row === 0 && color === 'black')
+  newState.board[row][column] = color + "king";
+  else if(row === 7 && color === "red")
+  newState.board[row][column] = color + "king";
+  else
+  newState.board[row][column] = color
+  removeHighlight(newState)
+newState.currentTurn = color === 'black'? 'RED' : 'BLACK';
+return newState
+
+}
+
+
+
