@@ -559,7 +559,7 @@ console.log(canCapture1, canCapture2)
 
 if(kingBo){
   // MOVEMENT FOR KINGS
-  return newState
+  return kingCheckHighlight(newState, color, canCapture1, canCapture2)
 }else{
   // console.log('Can do pieceCheckHighlight')
 // MOVEMENT FOR PAWNS
@@ -568,6 +568,44 @@ let piece = pieceCheckHighlight(newState, color, canCapture1, canCapture2)
 return piece
 }
 }
+
+function kingCheckHighlight(newState, color, capColor1, capColor2){
+  let ogRow= newState.pieceBeforeMove.row
+  let ogCol = newState.pieceBeforeMove.column
+  if(newState.board[ogRow+1]){
+    kingCheckRow(newState, color,ogRow+1, ogCol, capColor1, capColor2)
+  }
+
+  if(newState.board[ogRow-1]){
+    kingCheckRow(newState, color,ogRow-1, ogCol, capColor1, capColor2)
+  }
+
+  return newState
+}
+
+
+function kingCheckRow(newState, color,newRow, ogCol, capColor1, capColor2){
+  let rowDir = newRow - newState.pieceBeforeMove.row
+
+  if(newState.board[newRow][ogCol+1] === 'empty'){
+    pieceHighLight(newState, newRow, ogCol+1)
+
+  }else if(newState.board[newRow][ogCol+1] === capColor1 || newState.board[newRow][ogCol+1] === capColor2){
+    // ROW DIRECTION 
+    console.log(rowDir)
+    pieceCaptureHighlight(newState, newRow, ogCol+1, rowDir, +1, capColor1, capColor2)
+  }
+
+  if(newState.board[newRow][ogCol-1] === 'empty'){
+    pieceHighLight(newState, newRow, ogCol-1)
+  }else if(newState.board[newRow][ogCol-1] === capColor1 || newState.board[newRow][ogCol-1] === capColor2){
+    console.log(rowDir)
+    pieceCaptureHighlight(newState, newRow, ogCol-1, rowDir, -1, capColor1, capColor2)
+  }
+
+
+}
+
 
 function pieceCheckHighlight(newState, color, capColor1, capColor2){
 
@@ -601,7 +639,6 @@ if(newState.board[newState.pieceBeforeMove.row + moveMent]){
     // CHECKS IF EMPTY
 
     if(pieceOnRight === 'empty'){
-
       pieceHighLight(newState, newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column-1);
     }else{
 
