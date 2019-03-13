@@ -1,0 +1,37 @@
+.death-row{
+    height: 10vh;
+
+    display: flex;
+    flex-direction: column;
+    width: 65vw;
+
+}
+
+.death-row-red{
+    display: flex;
+    height: 5vh;
+}
+
+.death-row-black{
+    display: flex;
+    height: 5vh;
+}
+
+
+
+.death-red{
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    border-radius: 50%;
+
+    color:white;
+}
+.death-black{
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    border-radius: 50%;
+
+    color:white;
+}

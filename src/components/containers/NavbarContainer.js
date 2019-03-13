@@ -1,27 +1,56 @@
-import React from "react";
 
-import '../../styles/nav.css'
+
+import "../../styles/nav.css";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Navbar = ({ title, tabs }) => {
-  return (
-    <div className="nav shadow frame">
-      <div className="nav-content row-apart">
-        <h2>{title}</h2>
-        <div className="row nav-tabs">
-          {tabs.map(tab => (
-            <Link
-              className="nav-tab frame background-hover"
-              key={tab.text}
-              to={tab.route}
-            >
-              {tab.text}
-            </Link>
-          ))}
-        </div>
+import React, { Component } from 'react'
+import Tabs from "../Tabs";
+
+class NavbarContainer extends Component {
+
+
+
+  render() {
+    console.log(this.props)
+    return (
+      <React.Fragment>
+      <div className='navBar'>
+        
       </div>
-    </div>
-  );
-};
+      <div style={{height: '6vh'}}/>
+      <div className="tabs is-toggle is-toggle-rounded">
+        <ul className='tabs-list'>
 
-export default Navbar;
+          {this.props.tabs.map((tabs, index) =>(
+            <Tabs method={this.props.setActive} key={index}tabs={tabs} currentActive={this.props.currentActive}/>
+          ))}
+
+          {/* <li className='is-active'>
+            <a>Pictures</a>
+          </li>
+          <li className=''>
+            <a>Pictures</a>
+          </li> */}
+        </ul>
+      </div>
+
+    </React.Fragment>
+    )
+  }
+}
+
+
+const mapStateToProps = state => ({
+  currentActive : state.navBar
+  
+});
+
+const mapDispatchToProps = dispatch => ({
+  setActive :(tabs) =>dispatch({type:'CHANGE_TAB' ,value: tabs})
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavbarContainer);

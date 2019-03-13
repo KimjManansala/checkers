@@ -36,7 +36,7 @@ ReactDOM.render(
           title={"Welcome to my Checkers game!"}
           tabs={[
             { text: "Checkers", route: "/" },
-            { text: "Abou", route: "/profile" }
+            { text: "About", route: "/profile" }
           ]}
         />
         <Switch>

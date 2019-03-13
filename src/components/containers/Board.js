@@ -2,35 +2,40 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Row from "../Row";
 import '../../styles/board.css'
+import CaputerdPiece from "../CaputerdPiece";
 
 class Board extends Component {
-    componentDidUpdate(){
-    }
+
 
     // removeImage(){
-
     // }
   render() {
 
-        // {/* {this.props.showCaputre? <img src="https://media.giphy.com/media/xpvrBOE693ws0/giphy.gif" alt="Twice momo gif" className='capture-gif'/>: null} */}
 
     return (
-      <React.Fragment>
-        <h1>HELLO THIS IS THE TEST FOR THE BOARD</h1>
-        <h2>It is {this.props.currentTurn}</h2>
 
+        <div className='checkers-body'>
+
+        
+        <h1>It is {this.props.currentTurn} Turn</h1>
         <div className="boardContainer">
           {this.props.board.map((row, index)=>(
             <Row rowName={row} index={index} method={this.props.pieceMove} key={index}/>
           ))}
         </div>
-      </React.Fragment>
+          
+          <CaputerdPiece red={this.props.redArr} black={this.props.blackArr}/>
+
+        </div>
+
     );
   }
 }
 
 const mapStateToProps = state => ({
   currentTurn: state.board.currentTurn,
+  redArr : state.board.redArr,
+  blackArr: state.board.blackArr,
   board: state.board.board,
   showCaputre: state.board.showCapture
 });

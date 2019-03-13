@@ -7,7 +7,7 @@ const Piece = ({color, rowI, column, method}) => {
     <div className={'piece-'+color}
         onClick={method? ()=>{method(color, rowI, column)}: null}
       >
-      {rowI >= 0? rowI + '-'+  column: 0+'-'+0}
+
       </div>
   )
 }
