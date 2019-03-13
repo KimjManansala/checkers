@@ -77,6 +77,9 @@ function checkHighlight(state) {
 
 function startPieceMove(newState, row ,column, color){
 if(checkHighlight(newState.board)){
+    if(newState.pieceBeforeMove.row === row  && newState.pieceBeforeMove.column === column ){
+      return removeHighlight(newState)
+    }
   switch(color){
     case 'red':
     console.log('red')
@@ -103,8 +106,14 @@ if(checkHighlight(newState.board)){
     return newState
   }
 }else{
+  if(newState.pieceBeforeMove.row === row  && newState.pieceBeforeMove.column === column ){
+    newState.pieceBeforeMove.row = null
+    newState.pieceBeforeMove.column = null
+    return removeHighlight(newState)
+  }
   switch(color){
     case 'highlight':
+    
     if(newState.currentTurn === 'BLACK'){
   return moveToHighlight(newState, row, column, 'black')
     }else{
