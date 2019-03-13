@@ -11,11 +11,25 @@ function initialBoard() {
   ];
 }
 
+function trippleKillBoard(){
+  return [
+    ["red", null, "red", null, "red", null, "empty", null],
+    [null, "red", null, "red", null, "red", null, "red"],
+    ["red", null, "red", null, "empty", null, "red", null],
+    [null, "empty", null, "red", null, "empty", null, "empty"],
+    ["empty", null, "empty", null, "empty", null, "empty", null],
+    [null, "red", null, "black", null, "black", null, "black"],
+    ["black", null, "black", null, "black", null, "black", null],
+    [null, "black", null, "black", null, "black", null, "black"]
+  ];
+}
+
 // INITIAL STATE
 
 const gameState = {
   currentTurn: "BLACK",
-  board: initialBoard(),
+  // board: initialBoard(),
+  board: trippleKillBoard(),
   red: 0,
   black: 0,
   winner: null,
@@ -275,10 +289,8 @@ function pieceCaptureHighlight(newState, row, column, rowDir, colDir, capColor1,
       newState.board[row+rowDir][column+colDir] = 'highlight'
       newState.canContinue = true
     }else{
-      newState.canContinue = false
     }
   }else{
-    newState.canContinue = false
   }
 }
 }
@@ -324,15 +336,17 @@ if(newState.didCapture){
       break;
     }
     checkContinue(newState, color, capColor1, capColor2, row, column)
+
 }
   if(newState.canContinue){
 
-
+    console.log('IT WILL CONTINUE')
     newState.pieceBeforeMove.row = row
     newState.pieceBeforeMove.column = column
 
 
   }else{
+
     newState.didCapture = false
     newState.currentTurn = color === 'black'? 'RED' : 'BLACK';
   }
@@ -343,26 +357,32 @@ return newState
 
 
 function checkContinue(newState, color, capColor1, capColor2, ogRow, ogCol){
+  let show1;
+    let show2;
 
   let moveColor = (color === 'black' || color ==='blackking')
   let moveMent = 0
   moveColor? moveMent = -1: moveMent= 1;
-console.log(moveMent)
+
   if(newState.board[ogRow + moveMent]){
     
   let pieceOnLeft = newState.board[ogRow + moveMent][ogCol+1]
   let pieceOnRight = newState.board[ogRow + moveMent][ogCol-1]
-
-
-    if(pieceOnLeft === capColor1 || pieceOnLeft === capColor2){
+  console.log((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty')
+  // newState.board[row+rowDir][column+colDir] === 'empty'    
+  // pieceCaptureHighlight(newState, row, column, rowDir, colDir, capColor1, capColor2)
+    if((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty'){
       pieceCaptureHighlight(newState, ogRow + moveMent, ogCol+1 , moveMent, 1, capColor1, capColor2)
     }else{
-      newState.canContinue = false
+      show1 = true
     }
-  if(pieceOnRight === capColor1 || pieceOnRight === capColor2){
+  if((pieceOnRight === capColor1 || pieceOnRight === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol-1-1] === 'empty'){
     pieceCaptureHighlight(newState, ogRow + moveMent, ogCol-1 , moveMent, -1, capColor1, capColor2)
-
   }else{
+    show2 = true
+  }
+  console.log(show1, show2,false && false)
+  if(show1 && show2){
     newState.canContinue = false
   }
 

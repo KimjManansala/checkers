@@ -4,7 +4,7 @@ import '../styles/deathRow.css'
 
 
 const CaputerdPiece = ({red, black}) => {
-    console.log(red, black)
+
   return (
       <div className='death-row'>
     <div className='death-row-red'>

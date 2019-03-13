@@ -1,7 +1,7 @@
 
 
 import "../../styles/nav.css";
-import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 
 import React, { Component } from 'react'
@@ -12,7 +12,7 @@ class NavbarContainer extends Component {
 
 
   render() {
-    console.log(this.props)
+
     return (
       <React.Fragment>
       <div className='navBar'>
