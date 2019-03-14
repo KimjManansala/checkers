@@ -28,8 +28,8 @@ function trippleKillBoard(){
 
 const gameState = {
   currentTurn: "BLACK",
-  // board: initialBoard(),
-  board: trippleKillBoard(),
+  board: initialBoard(),
+  // board: trippleKillBoard(),
   red: 0,
   black: 0,
   winner: null,

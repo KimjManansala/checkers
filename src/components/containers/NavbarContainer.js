@@ -19,7 +19,7 @@ class NavbarContainer extends Component {
         
       </div>
       <div style={{height: '6vh'}}/>
-      <div className="tabs is-toggle is-toggle-rounded">
+      <div className="tabs is-centered is-boxed">
         <ul className='tabs-list'>
 
           {this.props.tabs.map((tabs, index) =>(
