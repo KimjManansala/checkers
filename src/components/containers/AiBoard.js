@@ -19,7 +19,7 @@ class AiBoard extends Component {
 
     return (
         <div className='checkers-body'>
-        <div className='underConstruction'></div>        
+
 
         
         {this.props.winner? <h1>{this.props.winner}</h1>: <h1>HI, CHECKERS VS COMPUTER IS STILL UNDER DEVELOPMENT. COME BACK LATER :)</h1>}
