@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "/checkers/static/js/runtime~main.840ce03b.js"
   },
   {
-    "revision": "001410cbbe8698f19a4d",
-    "url": "/checkers/static/js/main.001410cb.chunk.js"
+    "revision": "2ce04175b6b60fa1e3d6",
+    "url": "/checkers/static/js/main.2ce04175.chunk.js"
   },
   {
     "revision": "cf8bc514bf1da749e617",
     "url": "/checkers/static/js/2.cf8bc514.chunk.js"
   },
   {
-    "revision": "001410cbbe8698f19a4d",
+    "revision": "2ce04175b6b60fa1e3d6",
     "url": "/checkers/static/css/main.357f3f12.chunk.css"
   },
   {
-    "revision": "7f78ac2e7d918fb2c805a2927de4f94e",
+    "revision": "5d2ad67606d3bf09b9abbfbbfabc6b21",
     "url": "/checkers/index.html"
   }
 ];
