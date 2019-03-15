@@ -36,14 +36,14 @@ class AiBoard extends Component {
     );
   }
 }
-{/* <h1>It is {this.props.currentTurn} Turn</h1> */}
+
 const mapStateToProps = state => ({
-  currentTurn: state.board.currentTurn,
-  redArr : state.board.redArr,
-  blackArr: state.board.blackArr,
-  board: state.board.board,
-  showCaputre: state.board.showCapture,
-  winner: state.board.winner
+  currentTurn: state.aiBoard.currentTurn,
+  redArr : state.aiBoard.redArr,
+  blackArr: state.aiBoard.blackArr,
+  board: state.aiBoard.board,
+  showCaputre: state.aiBoard.showCapture,
+  winner: state.aiBoard.winner
 });
 
 const mapDispatchToProps = dispatch => ({
