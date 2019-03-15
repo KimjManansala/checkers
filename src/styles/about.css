@@ -6,3 +6,11 @@ h1{
 .section-par{
     margin: 10px;
 }
+
+.section-par > p{
+    font-size: 24px;
+    color: rgb(0, 0, 0)
+}
+.sections-body{
+    height: 100vh;
+}

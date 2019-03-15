@@ -30,6 +30,8 @@ class Board extends Component {
   // }
   render() {
     return (
+
+
       <div className="checkers-body">
         {this.props.winner ? (
           <h1>{this.props.winner}</h1>
@@ -48,6 +50,7 @@ class Board extends Component {
         </div>
         <button onClick={() => this.restartGame()} >Restart the Game</button>
         <CaputerdPiece red={this.props.redArr} black={this.props.blackArr} />
+
       </div>
     );
   }

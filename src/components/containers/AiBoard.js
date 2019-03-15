@@ -21,8 +21,14 @@ class AiBoard extends Component {
         <div className='checkers-body'>
 
 
-        
-        {this.props.winner? <h1>{this.props.winner}</h1>: <h1>HI, CHECKERS VS COMPUTER IS STILL UNDER DEVELOPMENT. COME BACK LATER :)</h1>}
+    
+            <div style={{
+                zIndex: 1,
+
+                fontSize: 50,
+
+            }}>Under Development. Come back later</div>
+
         <div className="boardContainer">
           {this.props.board.map((row, index)=>(
             <Row rowName={row} index={index} method={this.props.pieceMove} key={index}/>
