@@ -17,7 +17,9 @@ import { routerMiddleware } from "react-router-redux";
 // Components
 import App from "./components/App";
 import Navbar from "./components/containers/NavbarContainer";
-import About from './components/About'
+
+import AboutContainer from './components/containers/AboutSections'
+import AiBoard from "./components/containers/AiBoard";
 // Router middleware
 const routing = routerMiddleware(history);
 
@@ -35,15 +37,17 @@ ReactDOM.render(
         <Navbar
           title={"Welcome to my Checkers game!"}
           tabs={[
-            { text: "Checkers", route: "/" },
+            { text: "Checkers H vs H", route: "/" },
+            {text: 'Checker H vs C', route:"/checkers/bot"},
             { text: "About", route: "/about" }
           ]}
         />
         <Switch>
           <Route path="/" exact component={App} />
-          <Route path="/about" exact component={About} />
+          <Route path="/checkers/bot" exact component={AiBoard}/>
+          <Route path="/about" exact component={AboutContainer} />
         </Switch>
-        
+
       </div>
     </Router>
   </Provider>,

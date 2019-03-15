@@ -3,7 +3,7 @@
     return JSON.parse(JSON.stringify(x));
   }
   
-  let initial = 'Checkers'
+  let initial = 'Checkers H vs H'
 
   const navBarReducer = (state = initial, action) =>{
       let newState= deepCopy(state)

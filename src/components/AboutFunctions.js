@@ -7,8 +7,3 @@ export const aboutCheckersPar = () =>(
      `
 )
 
-
-export const challenges = () =>(
-    `One of the first challenges was creating a way for my one source of true, the store, would know where every piece is and the state the game is in.
-    I found creating an array of array was the best way to store the entire board`
-)

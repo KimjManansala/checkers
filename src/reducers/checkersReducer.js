@@ -11,15 +11,15 @@ function initialBoard() {
   ];
 }
 
-function trippleKillBoard(){
+function testBoard(){
   return [
-    ["red", null, "red", null, "red", null, "empty", null],
+    ["red", null, "red", null, "blackking", null, "empty", null],
     [null, "red", null, "red", null, "red", null, "red"],
-    ["red", null, "red", null, "empty", null, "red", null],
-    [null, "empty", null, "red", null, "empty", null, "empty"],
+    ["red", null, "empty", null, "empty", null, "red", null],
+    [null, "red", null, "red", null, "empty", null, "empty"],
     ["empty", null, "empty", null, "empty", null, "empty", null],
     [null, "red", null, "black", null, "black", null, "black"],
-    ["black", null, "black", null, "black", null, "black", null],
+    ["blackking", null, "black", null, "black", null, "black", null],
     [null, "black", null, "black", null, "black", null, "black"]
   ];
 }
@@ -29,9 +29,9 @@ function trippleKillBoard(){
 const gameState = {
   currentTurn: "BLACK",
   board: initialBoard(),
-  // board: trippleKillBoard(),
-  red: 0,
-  black: 0,
+  // board: testBoard(),
+  red: 12,
+  black: 12,
   winner: null,
   pieceBeforeMove: { row: 0, column: 0, oldColor: "black" },
   canContinue: false,
@@ -53,23 +53,43 @@ const checkerReducer = (state = gameState, action) => {
     case "PIECE_MOVE":
     return startPieceMove(newState, action.row ,action.column, action.color)
       // return movePiece(action.row, action.color, action.column, newState);
+    case 'GET_RUNNING_GAME':
+    return startRuningGame(newState, action.value)
+    case 'RESTART_GAME':
+    return gameState
     default:
       return state;
   }
 };
 export default checkerReducer;
 
+function startRuningGame(newState, runningGame){
+  newState = runningGame
+  return newState
 
+}
 
+// currentTurn: "BLACK",
+//   board: initialBoard(),
+//   // board: testBoard(),
+//   red: 12,
+//   black: 12,
+//   winner: null,
+//   pieceBeforeMove: { row: 0, column: 0, oldColor: "black" },
+//   canContinue: false,
+//   showCapture: false,
+//   didCapture: false,
+//   redArr: [],
+//   blackArr: []
 // CHECK WINNER
 
 function checkWinner(newState) {
-  if (newState.red === 12) {
+  if (newState.red === 0) {
     newState.winner = "Black Is the winner!!";
-    return newState;
-  } else if (newState.black === 12) {
+    // return newState;
+  } else if (newState.black === 0) {
     newState.winner = "Red Is the winner!!";
-    return newState;
+    // return newState;
   } else {
     // DO NOTHING
   }
@@ -368,24 +388,30 @@ function checkContinue(newState, color, capColor1, capColor2, ogRow, ogCol){
     
   let pieceOnLeft = newState.board[ogRow + moveMent][ogCol+1]
   let pieceOnRight = newState.board[ogRow + moveMent][ogCol-1]
-  console.log((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty')
+
   // newState.board[row+rowDir][column+colDir] === 'empty'    
   // pieceCaptureHighlight(newState, row, column, rowDir, colDir, capColor1, capColor2)
-    if((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty'){
-      pieceCaptureHighlight(newState, ogRow + moveMent, ogCol+1 , moveMent, 1, capColor1, capColor2)
+  console.log('This is the ogRow', ogRow)
+  console.log('This is line 374', ogRow + moveMent+moveMent, ogCol+1+1)
+    if(newState.board[ogRow + moveMent+moveMent]){
+        if((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty'){
+          pieceCaptureHighlight(newState, ogRow + moveMent, ogCol+1 , moveMent, 1, capColor1, capColor2)
+        }else{
+          show1 = true
+        }
+      if((pieceOnRight === capColor1 || pieceOnRight === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol-1-1] === 'empty'){
+        pieceCaptureHighlight(newState, ogRow + moveMent, ogCol-1 , moveMent, -1, capColor1, capColor2)
+      }else{
+        show2 = true
+      }
+      console.log(show1, show2,false && false)
+      if(show1 && show2){
+        newState.canContinue = false
+      }
+      
     }else{
-      show1 = true
+      newState.canContinue = false
     }
-  if((pieceOnRight === capColor1 || pieceOnRight === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol-1-1] === 'empty'){
-    pieceCaptureHighlight(newState, ogRow + moveMent, ogCol-1 , moveMent, -1, capColor1, capColor2)
-  }else{
-    show2 = true
-  }
-  console.log(show1, show2,false && false)
-  if(show1 && show2){
-    newState.canContinue = false
-  }
-
   }else{
     newState.canContinue = false
   }
@@ -414,13 +440,14 @@ function findCaptureCol(newState, row, column, orgColor, origRow){
   if(newState.pieceBeforeMove.column - column === 2){
     color = newState.board[row][column+1]
     if(color === 'red' || color ==='redking'){
-      newState.red +=1
+      newState.red -=1
       newState.redArr.push({color:'red'})
     }else if(color === 'black' || color ==='blackking'){
-      newState.black +=1
+      newState.black -=1
       newState.blackArr.push({color:'black'})
     }
     newState.didCapture = true
+    checkWinner(newState)
     newState.board[row][column+1] = 'empty'
     // pieceCheckHighlight(newState, orgColor, capColor1, capColor2)
 
@@ -428,15 +455,15 @@ function findCaptureCol(newState, row, column, orgColor, origRow){
     // newState.pieceBeforeMove.column + 1
     color = newState.board[row][column-1]
     if(color === 'red' || color ==='redking'){
-      newState.red +=1
+      newState.red -=1
       newState.redArr.push({color:'red'})
     }else if(color === 'black' || color ==='blackking'){
-      newState.black +=1
+      newState.black -=1
       newState.blackArr.push({color:'black'})
     }
     newState.didCapture = true
     newState.board[row][column-1] = 'empty'
-    
+    checkWinner(newState)
   }else{
     newState.canContinue = false;
   }

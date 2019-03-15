@@ -1,16 +1,29 @@
 .navBar {
-	height: 10vh;
+	/* height: 10vh; */
 	width: 100vw;
-	position: fixed;
+	/* position: fixed; */
 	/* background-image: url('../img/navbar.jpeg'); */
 	z-index: -1;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	display: flex;
+
+	justify-content: center;
 
 }
 
 .tabs {
 	height: 4vh;
+	
+}		
+
+.tabs-list > *{
+
 }
+
+.is-active{
+	background-image: url('../img/navBar.jpg');
+}
+

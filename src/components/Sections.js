@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Sections = () => {
+const Sections = ({title, content}) => {
   return (
-    <div>
-      
+    <div className='section-par'>
+      <h1>{title}</h1>
+      <p>{content}</p>
     </div>
   )
 }

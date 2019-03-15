@@ -16,14 +16,14 @@ class NavbarContainer extends Component {
     return (
       <React.Fragment>
       <div className='navBar'>
-        
+        <h1>Welcome to my Checkers game!</h1>
       </div>
-      <div style={{height: '6vh'}}/>
+
       <div className="tabs is-centered is-boxed">
         <ul className='tabs-list'>
 
           {this.props.tabs.map((tabs, index) =>(
-            <Tabs method={this.props.setActive} key={index}tabs={tabs} currentActive={this.props.currentActive}/>
+            <Tabs method={this.props.setActive} key={index} tabs={tabs} currentActive={this.props.currentActive}/>
           ))}
 
           {/* <li className='is-active'>

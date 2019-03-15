@@ -11,6 +11,7 @@ const Square = ({ empty, color, rowI, column, method}) => {
           <div className='square-empty'>
             <Piece color={'blank'}
               method={null}
+              
             />
             </div>
         : 

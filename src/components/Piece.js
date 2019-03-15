@@ -7,11 +7,12 @@ const Piece = ({color, rowI, column, method}) => {
     <div className={'piece-'+color}
         onClick={method? ()=>{method(color, rowI, column)}: null}
       >
+      
 
       </div>
   )
 }
-// {rowI}-{column}
+// {rowI? `${rowI}-${column}`: `0-0`}
 export default Piece
 
 
