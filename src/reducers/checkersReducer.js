@@ -116,7 +116,8 @@ if(checkHighlight(newState.board)){
     }
   switch(color){
     case 'red':
-    console.log('red')
+
+  
     if(newState.currentTurn === 'RED')
     return createHighlight(newState, row, column, color, false)
     else
@@ -196,13 +197,13 @@ switch(color){
   default:
   break;
 }
-console.log(canCapture1, canCapture2)
+
 
 if(kingBo){
   // MOVEMENT FOR KINGS
   return kingCheckHighlight(newState, color, canCapture1, canCapture2)
 }else{
-  // console.log('Can do pieceCheckHighlight')
+
 // MOVEMENT FOR PAWNS
 let piece = pieceCheckHighlight(newState, color, canCapture1, canCapture2)
 
@@ -233,14 +234,14 @@ function kingCheckRow(newState, color,newRow, ogCol, capColor1, capColor2){
 
   }else if(newState.board[newRow][ogCol+1] === capColor1 || newState.board[newRow][ogCol+1] === capColor2){
     // ROW DIRECTION 
-    console.log(rowDir)
+
     pieceCaptureHighlight(newState, newRow, ogCol+1, rowDir, +1, capColor1, capColor2)
   }
 
   if(newState.board[newRow][ogCol-1] === 'empty'){
     pieceHighLight(newState, newRow, ogCol-1)
   }else if(newState.board[newRow][ogCol-1] === capColor1 || newState.board[newRow][ogCol-1] === capColor2){
-    console.log(rowDir)
+
     pieceCaptureHighlight(newState, newRow, ogCol-1, rowDir, -1, capColor1, capColor2)
   }
 
@@ -259,8 +260,8 @@ if(newState.board[newState.pieceBeforeMove.row + moveMent]){
   let pieceOnLeft = newState.board[newState.pieceBeforeMove.row + moveMent][newState.pieceBeforeMove.column+1]
   let pieceOnRight = newState.board[newState.pieceBeforeMove.row + moveMent][newState.pieceBeforeMove.column-1]
   // CHECKS PIECES ON LEFT EXIST
-  console.log('piece ON LEFT', newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column+1, pieceOnLeft)
-  console.log('piece on right', newState.pieceBeforeMove.row + moveMent, newState.pieceBeforeMove.column-1, pieceOnRight)
+
+
   if(pieceOnLeft){
     // CHECKS IF EMPTY
     if(pieceOnLeft === 'empty'){
@@ -288,7 +289,7 @@ if(newState.board[newState.pieceBeforeMove.row + moveMent]){
     }
   }
 }else{
-console.log('It failed')
+
   // DO NOTHING
 }
 
@@ -360,7 +361,7 @@ if(newState.didCapture){
 }
   if(newState.canContinue){
 
-    console.log('IT WILL CONTINUE')
+
     newState.pieceBeforeMove.row = row
     newState.pieceBeforeMove.column = column
 
@@ -391,8 +392,7 @@ function checkContinue(newState, color, capColor1, capColor2, ogRow, ogCol){
 
   // newState.board[row+rowDir][column+colDir] === 'empty'    
   // pieceCaptureHighlight(newState, row, column, rowDir, colDir, capColor1, capColor2)
-  console.log('This is the ogRow', ogRow)
-  console.log('This is line 374', ogRow + moveMent+moveMent, ogCol+1+1)
+
     if(newState.board[ogRow + moveMent+moveMent]){
         if((pieceOnLeft === capColor1 || pieceOnLeft === capColor2) && newState.board[ogRow + moveMent+moveMent][ogCol+1+1] === 'empty'){
           pieceCaptureHighlight(newState, ogRow + moveMent, ogCol+1 , moveMent, 1, capColor1, capColor2)
@@ -404,7 +404,7 @@ function checkContinue(newState, color, capColor1, capColor2, ogRow, ogCol){
       }else{
         show2 = true
       }
-      console.log(show1, show2,false && false)
+
       if(show1 && show2){
         newState.canContinue = false
       }

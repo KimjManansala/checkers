@@ -5,7 +5,7 @@ const Tabs = ({method, tabs, currentActive}) => {
   return (
     <React.Fragment>
     <li onClick={()=>{
-        console.log('Hello ')
+
 
         method(tabs.text)}}
     className={currentActive === tabs.text? 'is-active': ''}>

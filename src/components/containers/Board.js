@@ -7,7 +7,7 @@ import CaputerdPiece from "../CaputerdPiece";
 class Board extends Component {
   getLocalGame() {
     let gameState = JSON.parse(localStorage.getItem('gamestate'))
-    console.log(gameState)
+
     this.props.startGame(gameState)
   }
   componentDidMount(){
