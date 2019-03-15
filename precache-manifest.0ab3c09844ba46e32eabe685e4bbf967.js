@@ -12,23 +12,27 @@ self.__precacheManifest = [
     "url": "/checkers/static/media/download.a032e906.jpeg"
   },
   {
+    "revision": "bbbe8aba395b3ade4ae654b28b28f343",
+    "url": "/checkers/static/media/background.bbbe8aba.jpg"
+  },
+  {
     "revision": "840ce03b29508c38e849",
     "url": "/checkers/static/js/runtime~main.840ce03b.js"
   },
   {
-    "revision": "896f7fbb98a2d7e31a41",
-    "url": "/checkers/static/js/main.896f7fbb.chunk.js"
+    "revision": "b26575c62d2a01e3d547",
+    "url": "/checkers/static/js/main.b26575c6.chunk.js"
   },
   {
     "revision": "2111887a2e732b2aebdc",
     "url": "/checkers/static/js/2.2111887a.chunk.js"
   },
   {
-    "revision": "896f7fbb98a2d7e31a41",
-    "url": "/checkers/static/css/main.357f3f12.chunk.css"
+    "revision": "b26575c62d2a01e3d547",
+    "url": "/checkers/static/css/main.95725b5c.chunk.css"
   },
   {
-    "revision": "116f80dc13dbe0f60411b243db0a07c4",
+    "revision": "5bc11213d97279d7ca67342fda119c2a",
     "url": "/checkers/index.html"
   }
 ];
