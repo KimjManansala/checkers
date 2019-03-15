@@ -10,7 +10,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers/index";
 
 // React Router
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import history from "./history"; // Import history in any component you want to use it
 import { routerMiddleware } from "react-router-redux";
 
@@ -29,7 +29,8 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(routing))
 );
-
+//basename={process.env.PUBLIC_URL}>
+console.log('url', process.env.PUBLIC_URL)
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history} basename={process.env.PUBLIC_URL}>
@@ -38,13 +39,13 @@ ReactDOM.render(
           title={"Welcome to my Checkers game!"}
           tabs={[
             { text: "Checkers H vs H", route: "/" },
-            {text: 'Checker H vs C', route:"/checkers/bot"},
+            {text: 'Checker H vs C', route:"/bot"},
             { text: "About", route: "/about" }
           ]}
         />
         <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="/checkers/bot" exact component={AiBoard}/>
+          <Route exact path="/" component={App} />
+          <Route path="/bot" exact component={AiBoard}/>
           <Route path="/about" exact component={AboutContainer} />
         </Switch>
 

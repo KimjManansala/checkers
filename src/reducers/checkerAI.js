@@ -14,18 +14,18 @@ function initialBoard() {
       [null, "black", null, "black", null, "black", null, "black"]
     ];
   }
-console.log(
-    `
-    1: 1-0-3-0-5-0-7-0
-    2: 0-2-0-4-0-6-0-8
-    3: 1-0-3-0-5-0-7-0
-    4: 0-2-0-4-0-6-0-8
-    5: 1-0-3-0-5-0-7-0
-    6: 0-2-0-4-0-6-0-8
-    7: 1-0-3-0-5-0-7-0
-    8: 0-2-0-4-0-6-0-8    
-    `
-)
+// console.log(
+//     `
+//     1: 1-0-3-0-5-0-7-0
+//     2: 0-2-0-4-0-6-0-8
+//     3: 1-0-3-0-5-0-7-0
+//     4: 0-2-0-4-0-6-0-8
+//     5: 1-0-3-0-5-0-7-0
+//     6: 0-2-0-4-0-6-0-8
+//     7: 1-0-3-0-5-0-7-0
+//     8: 0-2-0-4-0-6-0-8    
+//     `
+// )
 
   const gameState = {
     currentTurn: "BLACK",
@@ -73,14 +73,14 @@ function scanBoard(newState){
         }
 
     }
-    console.log(redPieces)
-    canPieceMove(newState, redPieces)
+    // console.log(redPieces)
+    // canPieceMove(newState, redPieces)
 }
 function canPieceMove(newState, reddPieces){
-    let possibleMoves = []
+
     reddPieces.forEach(elm=>{
         if(newState.board[elm.row+1]){
-
+            checkNextColumn(newState, )
         }
 
     })

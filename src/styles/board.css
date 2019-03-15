@@ -20,7 +20,7 @@
     justify-content: center;
     margin: auto;
     width: fit-content;
-    height: 750px;
+    height: 100%;
     padding: 50px;
     background-image: url('../img/navBar.jpg');
     
@@ -32,9 +32,9 @@
 #root{
     background-attachment: fixed;
 	background-position: center;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
     background-size: cover;
     z-index: -1;
     background-image: url('../img/navBar.jpg');
-    height: 100vh;
+    /* height: 100vh; */
 }
