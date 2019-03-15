@@ -46,22 +46,25 @@ function initialBoard() {
     }
   }
 
-
+export default checkerReducer
 
 // THIS WILL BE THE CHECKERS AI FOR RED PLAYER
-
+scanBoard(gameState)
 function scanBoard(newState){
+
     // FUNCTION TO CHECK WHICH PIECE IS VALID TO MOVE
     let redPieces =[]
-    for(let i = 0; i < newState.board; i++){
-        for(let j = 0; j < newState.board[i]; i++){
+    for(let i = 0; i < newState.board.length; i++){
+        for(let j =0; j <newState.board[i].length; j++){
             if(newState.board[i][j] === 'red'){
                 redPieces.push({row: i, column: j})
             }
         }
+
     }
-
+    console.log(redPieces)
+    canPieceMove(newState, redPieces)
 }
-function canPieceMove(reddPieces){
-
+function canPieceMove(newState, reddPieces){
+    
 }
