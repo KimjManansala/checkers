@@ -30,15 +30,18 @@
 .checkers-body > h1{
     font-size: 50px;
 }
-
+/* 
 #root{
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    /* height: 100vh; */
-}
+    height: 100vh;
+
+    
+} */
 
 body{
     background-attachment: fixed;
