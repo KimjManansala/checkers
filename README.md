@@ -25,7 +25,8 @@ Checkers is a ReactJS project that will test and refine my skills with React and
 ##Live Demo
 ---
 <!-- [Space Balls](http://paigeniedringhaus.com/spaceBalls/) -->
-Link will be uploaded shortly
+[CHECKERS](https://kimjmanansala.github.io/checkers/)
+
 
 ##Link to Video of Gameplay
 ---
