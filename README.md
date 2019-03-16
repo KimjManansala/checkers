@@ -62,9 +62,10 @@ Simple checkers game
 
   * Challenge #1: Game checks
     Creating a game is very complex especially with all the possibilities the user can do. I am creating checks for checkers that are pure functions.
-  * Challenge #1: Creating checks if User ate a piece
-    I create a function that checks if the player is able to eat a player. As of right now the player can skip over it but I need to create checks if the user did choose to eat the piece.
-
+  * Challenge #2: Creating checks if User captured a piece
+    I create a function that checks if the player is able to captured a player. As of right now the player can skip over it but I need to create checks if the user did choose to eat the piece.
+  * Chlallenge # 3: Creating multiple jumps
+    After being able to capture a piece I had to create a way to check if I can capture another piece again.
   More challenges to come as I continue to program
 
 
