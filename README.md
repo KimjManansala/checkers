@@ -24,13 +24,13 @@ Checkers is a ReactJS project that will test and refine my skills with React and
 
 ##Live Demo
 ---
-<!-- [Space Balls](http://paigeniedringhaus.com/spaceBalls/) -->
+
 [CHECKERS](https://kimjmanansala.github.io/checkers/)
 
 
 ##Link to Video of Gameplay
 ---
-<!-- <a href="https://www.youtube.com/watch?v=_gJCeyrkUkM" target="_blank"><img src="http://img.youtube.com/vi/_gJCeyrkUkM/0.jpg" width="240" height="180" border="10" /></a> -->
+<a href="https://youtu.be/fFZmwCUExnI" target="_blank"><img src="https://user-images.githubusercontent.com/40606399/54618573-3e43e280-4a31-11e9-96fd-08fdc8d7273c.png" width="240" height="180" border="10" /></a>
 
 Will be uploaded shortly
 
@@ -85,9 +85,17 @@ Simple checkers game
 ##Screenshots
 ---
 Coming soon
-<!-- Home Screen
-![screen shot 2019-02-12 at 3 27 42 pm](https://user-images.githubusercontent.com/40606399/53651563-862ed100-3c0c-11e9-9b6c-c817c4fd6057.png) -->
+Home Screen
+![Screen Shot 2019-03-19 at 10 18 56 AM](https://user-images.githubusercontent.com/40606399/54618573-3e43e280-4a31-11e9-96fd-08fdc8d7273c.png)
 
+Selecting piece to move
+![Screen Shot 2019-03-19 at 10 19 13 AM](https://user-images.githubusercontent.com/40606399/54618618-51ef4900-4a31-11e9-87e3-b01f61177db6.png)
+
+King a piece
+![Screen Shot 2019-03-19 at 10 19 45 AM](https://user-images.githubusercontent.com/40606399/54618669-66334600-4a31-11e9-8156-d57af17b3fe5.png)
+
+Winning the game
+![Screen Shot 2019-03-19 at 10 21 16 AM](https://user-images.githubusercontent.com/40606399/54618699-73e8cb80-4a31-11e9-8d25-2f37b026394f.png)
 
 
 
