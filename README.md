@@ -22,19 +22,19 @@ Checkers is a ReactJS project that will test and refine my skills with React and
 # Checkers
 ---
 
-##Live Demo
+## Live Demo
 ---
 
 [CHECKERS](https://kimjmanansala.github.io/checkers/)
 
 
-##Link to Video of Gameplay
+## Link to Video of Gameplay
 ---
 <a href="https://youtu.be/fFZmwCUExnI" target="_blank"><img src="https://user-images.githubusercontent.com/40606399/54618573-3e43e280-4a31-11e9-96fd-08fdc8d7273c.png" width="240" height="180" border="10" /></a>
 
 Will be uploaded shortly
 
-##Contents
+## Contents
 --- 
  * What It Is
   * What We Used
@@ -44,11 +44,11 @@ Will be uploaded shortly
   * Screenshots
   * Github Link
 
-##What It Is
+## What It Is
 ---
 This is a React Project to refine my skills using React and Redux. This is a simple checkers game to practice logic.
 
-##What We Used
+## What We Used
 ---
   * HTML5
   * CSS3
@@ -56,7 +56,7 @@ This is a React Project to refine my skills using React and Redux. This is a sim
   * ReactJS
   * Redux
 
-##Challenges and Solutions
+## Challenges and Solutions
 ---
 Simple checkers game
 
@@ -70,19 +70,19 @@ Simple checkers game
 
 
 
-##Our Stretch Goals
+## Our Stretch Goals
 --
   *Create an AI for single player use
 
-##Authors
+## Authors
 ---
   * [KimJ Manansala](https://github.com/KimjManansala)
 
-##Github Link
+## Github Link
 ---
 [Github](https://github.com/KimjManansala/checkers)
 
-##Screenshots
+## Screenshots
 ---
 Coming soon
 Home Screen
@@ -99,7 +99,7 @@ Winning the game
 
 
 
-##Code Examples
+## Code Examples
 ---
 Comming soon
 
